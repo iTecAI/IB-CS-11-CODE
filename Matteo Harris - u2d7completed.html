@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title> MyName -- Unit 2 Day 7</title>
+    <style>
+        
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        var array = new Array;
+        var mode = false;
+
+        function addToArray(){
+            var v = $('#input_field').val();
+            for (var i=0;i<v.split(',').length;i++) {
+                array.push(v.split(',')[i]);
+            }
+            $('#input_field').val('');
+            $('#output_display').html('Array: '+array.toString());
+        }
+
+        function clearArray(){
+            array = [];
+            $('#output_display').html('Array: ');
+        }
+
+        function bubbleSort(){
+            for (var i=0;i<array.length;i++){
+                for (var j=0;j<array.length;j++){
+                    if (Number(array[j]) < Number(array[j+1])) {
+                        var T = array[j+1];
+                        array[j+1] = array[j];
+                        array[j] = T;
+                    }
+                }
+            }
+            if (mode) {
+                array = array.reverse();
+            }
+            $('#output_display').html('Array: '+array.toString());
+        }
+
+        function selectionSort(){
+            for (var i=0;i<array.length;i++){
+                for (var j=i-1;j<array.length;j++){
+                    if (mode) {
+                        if (Number(array[j]) > Number(array[j+1])) {
+                            var T = array[j+1];
+                            array[j+1] = array[j];
+                            array[j] = T;
+                        }
+                    } else {
+                        if (Number(array[j]) < Number(array[j+1])) {
+                            var T = array[j+1];
+                            array[j+1] = array[j];
+                            array[j] = T;
+                        }
+                    }
+                }
+            }
+            
+            $('#output_display').html('Array: '+array.toString());
+        }
+
+        function switchMode() {
+            if (mode === true) {
+                mode = false;
+                $('#modeselect_button').text('Descending');
+            } else {
+                mode = true;
+                $('#modeselect_button').text('Ascending');
+            }
+            array = array.reverse();
+            $('#output_display').html('Array: '+array.toString());
+        }
+    </script>
+</head>
+<body>
+    <h1>Matteo Harris -- Unit 2 Day 7</h1>
+    <p>I will demonstrate both a bubble sort and a selection sort of a list using JavaScript</p>
+    <input id="input_field">
+    <button id="input_button" onclick="addToArray();">Enter into array</button>
+    <button id="clear_button" onclick="clearArray();">Clear array</button>
+    <button id="bubblesort_button" onclick="bubbleSort();">Click to Bubble Sort</button>
+    <button id="selectionsort_button" onclick="selectionSort();">Click to Selection Sort</button>
+    <button id="modeselect_button" onclick="switchMode();">Descending</button>
+    <p id="output_display">Array: </p>
+    <br>
+    <br>
+    <p>Note: Multiple modifications have been made. The input can take comma-separated values (1,2,3,4...), a clear button has been added, and the sort mode can be altered. Have a nice day! All ints AND floats are supported.</p>
+</body>
+</html>
