@@ -1,0 +1,62 @@
+<!--Code written by Matteo Harris on 11/6/19.
+Licensed under the GPL V3.0 License.
+Accessed on <date> by <your name>.-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function olist(arr) {
+                var out = String();
+                for (var i=0;i<arr.length-1;i++) {
+                    out += arr[i] + ', ';
+                }
+                out += arr[i];
+                return out;
+            }
+            function run1() { //array avg
+                var val = Array();
+                for (var x=0;x<1000;x++) {
+                    val.push(Math.floor(Math.random() * 10));
+                }
+                var avg = val.reduce(function (total,num) {
+                    return Number(total) + Number(num);
+                },0) / val.length;
+                $('#output1').html('Average: '+avg);
+                $('#output1-2').html('Values: '+olist(val));
+            }
+
+            function run2() {
+                var n = parseInt($('#input2').val(),10);
+
+                var factors = new Array();
+
+                for (var i=n;i>=Math.sqrt(n);i--){
+                    if (n%i == 0) {
+                        factors.push(i+' · '+(n/i)+' = '+n);
+                    }
+                }
+                
+                var out = String();
+                for (var i=0;i<factors.length-1;i++) {
+                    out += factors[i] + '<br> ';
+                }
+                out += factors[i];
+                $('#output2').html('Factors:<br> '+out);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Matteo Harris-Unit2Day10</h1>
+        <h3>Average of array (Auto generated.)</h3>
+        <button id='submit1' onclick="run1();">Generate</button>
+        <p id='output1'></p>
+        <p id='output1-2'></p>
+
+        <h3>Factor integers</h3>
+        <input placeholder="Number" id="input2">
+        <button id='submit2' onclick="run2();">Submit</button>
+        <p id='output2'></p>
+    </body>
+</html>
