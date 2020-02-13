@@ -1,0 +1,104 @@
+<!--
+Code written by Matteo Harris on 2/13/2020.
+Licensed under the GPL V3.0 License.
+Accessed on 2/13/2020 by Matteo Harris
+Original Product..
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <style>
+            table, tr, td, th {
+                border: 1px solid black;
+            }
+            td, th {
+                width: 10vw;
+                height: 5vh;
+                text-align: center;
+                vertical-align: middle;
+                font-size: large;
+            }
+
+            td:empty {
+                background-color: lightgray;
+            }
+        
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function onload() {
+                for (var i = 0; i < 8; i++) {
+                    var tableRow = document.createElement('tr');
+                    var rowHead = document.createElement('th');
+                    rowHead.textContent = (i+1).toString();
+                    tableRow.appendChild(rowHead);
+                    for (var k = 0; k < 5; k++) {
+                        var tableCell = document.createElement('td');
+                        tableCell.textContent = "";
+                        tableRow.appendChild(tableCell);
+                    }
+                    document.getElementById('out').appendChild(tableRow);
+                }
+            }
+
+            function run() {
+                var students = [];
+                students[0] = ['Cansu','Zaki','Inanna','Henry'];
+                students[1] = ['Sophia','Samantha','Aurisha','Lizbeth'];
+                students[2] = ['Matteo','Aurelia','Emma','Eric','Brett'];
+                students[3] = ['Ivan','Fabian','Ethan','Kristina'];
+                students[4] = ['Labiba','Mishal','Lucas'];
+                students[5] = ['Frankie','Benjamin','Md','Danny'];
+                students[6] = ['Sama','Barbara','Soria','Nidhi'];
+                students[7] = ['Karan','Gregory','Omar','Isha','Ibrahim'];
+
+                document.getElementById('out').remove();
+                
+                var table = document.createElement('table');
+                var row = document.createElement('tr');
+                var col = document.createElement('th');
+                col.textContent = 'Table';
+                row.appendChild(col);
+                for (var n = 0; n < 5; n++) {
+                    col = document.createElement('th');
+                    col.textContent = 'Student '+(n+1);
+                    row.appendChild(col);
+                }
+                table.appendChild(row);
+
+                for (var i = 0; i < 8; i++) {
+                    var tableRow = document.createElement('tr');
+                    var rowHead = document.createElement('th');
+                    rowHead.textContent = (i+1).toString();
+                    tableRow.appendChild(rowHead);
+                    for (var k = 0; k < 5; k++) {
+                        var tableCell = document.createElement('td');
+                        tableCell.textContent = students[i][k];
+                        tableRow.appendChild(tableCell);
+                    }
+                    table.appendChild(tableRow);
+                }
+
+                document.getElementById('outdiv').appendChild(table);
+            }
+        </script>
+        <title>21harrism-U4D5</title>
+    </head>
+    <body onload="onload();">
+        <h1>21harrism-U4D5</h1>
+        <button id='submit' onclick="run();">Populate</button>
+        <div id='outdiv'>
+            <table id='out'>
+                <tr>
+                    <th>Table</th>
+                    <th>Student 1</th>
+                    <th>Student 2</th>
+                    <th>Student 3</th>
+                    <th>Student 4</th>
+                    <th>Student 5</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
