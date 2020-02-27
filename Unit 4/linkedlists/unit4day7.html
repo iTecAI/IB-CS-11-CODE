@@ -1,0 +1,88 @@
+<!--Code written by Matteo Harris on 2/27/2020.
+Licensed under the GPL V3.0 License.
+Accessed on <date> by <your name>.-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            function Node(data) {
+                this.data = data;
+                this.next = null;
+                this.previous = null;
+                this.size = 0;
+                return this;
+            }
+
+            function LinkedList() {
+                this.head = null;
+                this.tail = null;
+            }
+
+            LinkedList.prototype.addLast = function(element) { 
+                // creates a new node 
+                var node = new Node(element); 
+            
+                // to store current node 
+                var current; 
+            
+                // if list is Empty add the 
+                // element and make it head 
+                if (this.head == null) 
+                    this.head = node; 
+                else { 
+                    current = this.head; 
+            
+                    // iterate to the end of the 
+                    // list 
+                    while (current.next) { 
+                        current = current.next; 
+                    } 
+            
+                    // add node 
+                    current.next = node; 
+                } 
+                this.size++; 
+            } 
+
+            LinkedList.prototype.print_to = function(element) 
+            { 
+                var cur = this.head;
+                while (cur != null) {
+                    var el = document.createElement('p');
+                    el.textContent = cur.data;
+                    element.appendChild(el);
+                    cur = cur.next;
+                }
+            } 
+
+            function run() {
+                var students = [];
+                students[0] = ['Cansu','Zaki','Inanna','Henry'];
+                students[1] = ['Sophia','Samantha','Aurisha','Lizbeth'];
+                students[2] = ['Matteo','Aurelia','Emma','Eric','Brett'];
+                students[3] = ['Ivan','Fabian','Ethan','Kristina'];
+                students[4] = ['Labiba','Mishal','Lucas'];
+                students[5] = ['Frankie','Benjamin','Md','Danny'];
+                students[6] = ['Sama','Barbara','Soria','Nidhi'];
+                students[7] = ['Karan','Gregory','Omar','Isha','Ibrahim'];
+
+                var link = new LinkedList;
+                for (var k = 0; k < students.length; k++) {
+                    for (var j = 0; j < students[k].length; j++) {
+                        link.addLast(students[k][j]);
+
+                    }
+                }
+
+                link.print_to(document.getElementById('output'));
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Matteo Harris - Unit 4 Day 7</h1>
+        <button id='submit' onclick="run();">Submit</button>
+        <div id='output'></div>
+    </body>
+</html>
